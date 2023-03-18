@@ -8,10 +8,10 @@ const startContainer = document.getElementById("start-screen");
 // Variables for the divs on the questions
 
 const questionComp2 = document.getElementById("question-comp2");
-
 const questionComp1 = document.getElementById("question-comp1");
 const questionComp3 = document.getElementById("question-comp3");
 const questionComp4 = document.getElementById("question-comp4");
+
 
 
 
@@ -43,11 +43,40 @@ const thirdQuest43 = document.getElementById("quest4.3");
 
 // const timer = document.getElementById("time")
 
-const timer = document.getElementById("timer");
-var timerCount;
-const currentQuestion = 0;
 
-const array = 0;
+
+const currentQuestion = 0;
+var timer = document.querySelector(".timer");
+
+var timerCount = 75;
+
+
+
+
+function setTime() {
+    // Sets interval in variable
+
+    console.log(timer);
+    console.log(timerCount);
+    var timerInterval = setInterval(function () {
+        timerCount--;
+        timer.textContent = timerCount + " seconds";
+
+
+        if (timerCount === 0) {
+            // Stops execution of action at set interval
+            clearInterval(timerInterval);
+            console.log("time finished");
+
+        }
+
+    }, 1000);
+}
+
+
+
+
+
 
 let gamecounter = 0;
 
@@ -96,18 +125,16 @@ startButton.addEventListener("click", startGame);
 
 function startGame() {
 
+    setTime();
     // hide start screen
     startContainer.classList.add("hide");
     questionComp1.className = "show";
 
-    // startTime = setInterval(set)
-    //  timerCount = 75;
-    //  startTimer()
 
-    // set user score to 0
-    userScore = 0;
 
     showQuestions();
+
+
 }
 
 function showQuestions() {
@@ -115,139 +142,161 @@ function showQuestions() {
     let n = 4;
     let gamecounter = 0;
 
-        function gamecounter1() {
-        if (gamecounter >= n ) {
+
+    function incorrectanswerTime() {
+
+
+        console.log("hello chi ");
+
+        console.log(timer.textContent);
+        const timerArray = timer.textContent.split(" ");
+        let time = timerArray[0];
+        console.log(time);
+
+        var timeInt = parseInt(time);
+        var updatedTime = timeInt - 10;
+        console.log(updatedTime);
+
+
+
+        $(".timer").update(updatedTime);
+
+    }
+
+    function gamecounter1() {
+        if (gamecounter >= n) {
             console.log("stop");
-          
+
         }
         if (gamecounter === 0) {
             questionComp2.className = "show";
             questionComp1.classList.add("hide");
 
-           }
-           if (gamecounter === 1) {
+        }
+        if (gamecounter === 1) {
             questionComp3.className = "show";
             questionComp2.classList.add("hide");
 
-           }
-           if (gamecounter === 2) {
+        }
+        if (gamecounter === 2) {
             questionComp4.className = "show";
             questionComp3.classList.add("hide");
 
-           }
-
-            console.log("before function");
-        console.log(gamecounter);
-            gamecounter++
-            console.log("after function");
-            console.log(gamecounter);
-            console.log("hello")
-
         }
-      
-        // Fourth Question 
+
+        console.log("before function");
+        console.log(gamecounter);
+        gamecounter++
+        console.log("after function");
+        console.log(gamecounter);
+
+
+    }
+
+    // Fourth Question 
 
 
 
-        document.getElementById("question-title1").textContent = Lastquestion;
+    document.getElementById("question-title1").textContent = Lastquestion;
 
-        firstQuest.textContent = questionsArray[3].choice[0];
-        btn = document.createElement("BUTTON");
-        btn.innerHTML = "Press here";
-        firstQuest.append(btn);
-        btn.addEventListener("click", gamecounter1);
-
-
-        secondQuest.textContent = questionsArray[3].choice[1];
-        btn = document.createElement("BUTTON");
-        btn.innerHTML = "Press here";
-        secondQuest.append(btn);
-        btn.addEventListener("click", gamecounter1);
-
-        thirdQuest.textContent = questionsArray[3].choice[2];
-        btn = document.createElement("BUTTON");
-        btn.innerHTML = "Press here";
-        thirdQuest.append(btn);
-        btn.addEventListener("click", gamecounter1)
-
-        fourthQuest.textContent = questionsArray[3].choice[3];
-        btn = document.createElement("BUTTON");
-        btn.innerHTML = "Press here";
-        fourthQuest.append(btn);
-        btn.addEventListener("click", gamecounter1);
+    firstQuest.textContent = questionsArray[3].choice[0];
+    btn = document.createElement("BUTTON");
+    btn.innerHTML = "Press here";
+    firstQuest.append(btn);
+    btn.addEventListener("click", gamecounter1);
+    btn.addEventListener("click", incorrectanswerTime);
 
 
-        //Third
-        document.getElementById("question-title2").textContent = Thirdquestion;
+    secondQuest.textContent = questionsArray[3].choice[1];
+    btn = document.createElement("BUTTON");
+    btn.innerHTML = "Press here";
+    secondQuest.append(btn);
+    btn.addEventListener("click", gamecounter1);
 
-        firstQuest1.textContent = questionsArray[2].choice[0];
-        btn = document.createElement("BUTTON");
-        btn.innerHTML = "Press here";
-        firstQuest1.append(btn);
-        btn.addEventListener("click", gamecounter1);
+    thirdQuest.textContent = questionsArray[3].choice[2];
+    btn = document.createElement("BUTTON");
+    btn.innerHTML = "Press here";
+    thirdQuest.append(btn);
+    btn.addEventListener("click", gamecounter1)
 
-
-        secondQuest2.textContent = questionsArray[2].choice[1];
-        btn = document.createElement("BUTTON");
-        btn.innerHTML = "Press here";
-        secondQuest2.append(btn);
-        btn.addEventListener("click", gamecounter1);
-
-        thirdQuest3.textContent = questionsArray[2].choice[2];
-        btn = document.createElement("BUTTON");
-        btn.innerHTML = "Press here";
-        thirdQuest3.append(btn);
-        btn.addEventListener("click", gamecounter1);
+    fourthQuest.textContent = questionsArray[3].choice[3];
+    btn = document.createElement("BUTTON");
+    btn.innerHTML = "Press here";
+    fourthQuest.append(btn);
+    btn.addEventListener("click", gamecounter1);
 
 
+    //Third
+    document.getElementById("question-title2").textContent = Thirdquestion;
 
-        //Second
-        document.getElementById("question-title3").textContent = Secondquestion;
-
-        // firstQuest11.textContent = questionsArray[1].choice[1];
-        // btn = document.createElement("BUTTON");
-        // firstQuest11.append(btn);
-
-        secondQuest22.textContent = questionsArray[1].choice[0];
-        btn = document.createElement("BUTTON");
-        btn.innerHTML = "Press here";
-        secondQuest22.append(btn);
-        btn.addEventListener("click", gamecounter1);
-
-        thirdQuest33.textContent = questionsArray[1].choice[2];
-        btn = document.createElement("BUTTON");
-        btn.innerHTML = "Press here";
-        thirdQuest33.append(btn);
-        btn.addEventListener("click", gamecounter1);
+    firstQuest1.textContent = questionsArray[2].choice[0];
+    btn = document.createElement("BUTTON");
+    btn.innerHTML = "Press here";
+    firstQuest1.append(btn);
+    btn.addEventListener("click", gamecounter1);
 
 
-        //first
-        document.getElementById("question-title4").textContent = Firstquestion;
+    secondQuest2.textContent = questionsArray[2].choice[1];
+    btn = document.createElement("BUTTON");
+    btn.innerHTML = "Press here";
+    secondQuest2.append(btn);
+    btn.addEventListener("click", gamecounter1);
 
-        firstQuest41.textContent = questionsArray[0].choice[0];
-        btn = document.createElement("BUTTON");
-        btn.innerHTML = "Press here";
-        firstQuest41.append(btn);
-        btn.addEventListener("click", gamecounter1);
-
-
-        secondQuest42.textContent = questionsArray[0].choice[2];
-        btn = document.createElement("BUTTON");
-        btn.innerHTML = "Press here";
-        secondQuest42.append(btn);
-        btn.addEventListener("click", gamecounter1);
-
-        thirdQuest43.textContent = questionsArray[0].choice[1];
-        btn = document.createElement("BUTTON");
-        btn.innerHTML = "Press here";
-        thirdQuest43.append(btn);
-        btn.addEventListener("click", gamecounter1);
+    thirdQuest3.textContent = questionsArray[2].choice[2];
+    btn = document.createElement("BUTTON");
+    btn.innerHTML = "Press here";
+    thirdQuest3.append(btn);
+    btn.addEventListener("click", gamecounter1);
 
 
 
-    
+    //Second
+    document.getElementById("question-title3").textContent = Secondquestion;
 
-  
+    // firstQuest11.textContent = questionsArray[1].choice[1];
+    // btn = document.createElement("BUTTON");
+    // firstQuest11.append(btn);
+
+    secondQuest22.textContent = questionsArray[1].choice[0];
+    btn = document.createElement("BUTTON");
+    btn.innerHTML = "Press here";
+    secondQuest22.append(btn);
+    btn.addEventListener("click", gamecounter1);
+
+    thirdQuest33.textContent = questionsArray[1].choice[2];
+    btn = document.createElement("BUTTON");
+    btn.innerHTML = "Press here";
+    thirdQuest33.append(btn);
+    btn.addEventListener("click", gamecounter1);
+
+
+    //first
+    document.getElementById("question-title4").textContent = Firstquestion;
+
+    firstQuest41.textContent = questionsArray[0].choice[0];
+    btn = document.createElement("BUTTON");
+    btn.innerHTML = "Press here";
+    firstQuest41.append(btn);
+    btn.addEventListener("click", gamecounter1);
+
+
+    secondQuest42.textContent = questionsArray[0].choice[2];
+    btn = document.createElement("BUTTON");
+    btn.innerHTML = "Press here";
+    secondQuest42.append(btn);
+    btn.addEventListener("click", gamecounter1);
+
+    thirdQuest43.textContent = questionsArray[0].choice[1];
+    btn = document.createElement("BUTTON");
+    btn.innerHTML = "Press here";
+    thirdQuest43.append(btn);
+    btn.addEventListener("click", gamecounter1);
+
+
+
+
+
+
 
 
 
