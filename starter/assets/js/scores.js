@@ -1,8 +1,7 @@
 
-let leaderboardArea = document.getElementById("highscores");
-let leaderboardTitle = document.getElementById("h1");
+let leaderboard = document.getElementById("highscores");
+let leaderboardHeader = document.getElementById("h1");
 let clearScoresButtton = document.getElementById("clear");
-
 let highscore = [];
 
 
@@ -26,7 +25,7 @@ function getStoredDetails() {
 
 
 function createLeaderboard() {
-    leaderboardArea.innerHTML = "";
+    leaderboard.innerHTML = "";
 
     
     for (var i = 0; i < highscore.length; i++) {
@@ -38,14 +37,14 @@ function createLeaderboard() {
          ol.setAttribute("data-index", i);
          
 
-        leaderboardArea.appendChild(ol);
+        leaderboard.appendChild(ol);
     }
  }
 
 
 function clearScoresButtton1() {
     highscore = [];
-    leaderboardArea.innerHTML = "";
+    leaderboard.innerHTML = "";
     localStorage.removeItem("highscoreRecordsArray")
 
 };
