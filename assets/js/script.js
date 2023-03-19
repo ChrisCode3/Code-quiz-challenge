@@ -181,7 +181,7 @@ function showQuestions() {
 
     function gamecounter1() {
         if (gamecounter >= n) {
-            console.log("stop");
+
 
         }
         if (gamecounter === 0) {
