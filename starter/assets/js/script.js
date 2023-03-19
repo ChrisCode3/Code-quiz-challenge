@@ -4,6 +4,8 @@ const startButton = document.querySelector("#start")
 const startContainer = document.getElementById("start-screen");
 
 
+let submitButton = document.getElementById("submit");
+
 
 // Variables for the divs on the questions
 
@@ -31,7 +33,7 @@ const secondQuest2 = document.getElementById("quest2.1");
 const thirdQuest3 = document.getElementById("quest3.1");
 
 
-const firstQuest11 = document.getElementById("quest2.1");
+// const firstQuest11 = document.getElementById("quest2.1");
 const secondQuest22 = document.getElementById("quest2.2");
 const thirdQuest33 = document.getElementById("quest3.3");
 
@@ -44,18 +46,26 @@ const thirdQuest43 = document.getElementById("quest4.3");
 // const timer = document.getElementById("time")
 
 
-
 const currentQuestion = 0;
 var timer = document.querySelector(".timer");
 
 var timerCount = 75;
+
+// Variables for Scores
+
+
+const endScreen = document.getElementById("end-screen");
+const Finalscore = document.getElementById("final-score");
+var highscoreRecordsArray = [];
+
+let score = 0;
+
 
 
 
 
 function setTime() {
     // Sets interval in variable
-
     console.log(timer);
     console.log(timerCount);
     var timerInterval = setInterval(function () {
@@ -76,6 +86,14 @@ function setTime() {
 
 
 
+function loseGame() {
+    startContainer.classList.add("hide");
+    console.log("you lost");
+
+}
+
+
+
 
 
 let gamecounter = 0;
@@ -88,7 +106,7 @@ const questionsArray = [
     },
     {
         question: "How do do you print a message on the console? ",
-        choice: ["1. print.log", "2. write.log", "2. console.log"],
+        choice: ["1. print.log", "", "2. console.log"],
         answer: 3
     },
     {
@@ -125,6 +143,8 @@ startButton.addEventListener("click", startGame);
 
 function startGame() {
 
+    score = 0;
+
     setTime();
     // hide start screen
     startContainer.classList.add("hide");
@@ -137,31 +157,35 @@ function startGame() {
 
 }
 
+
+
+
+
 function showQuestions() {
 
     let n = 4;
     let gamecounter = 0;
 
 
-    function incorrectanswerTime() {
+    // function incorrectanswerTime() {
 
 
-        console.log("hello chi ");
+    //     console.log("hello chi ");
 
-        console.log(timer.textContent);
-        const timerArray = timer.textContent.split(" ");
-        let time = timerArray[0];
-        console.log(time);
+    //     console.log(timer.textContent);
+    //     const timerArray = timer.textContent.split(" ");
+    //     let time = timerArray[0];
+    //     console.log(time);
 
-        var timeInt = parseInt(time);
-        var updatedTime = timeInt - 10;
-        console.log(updatedTime);
+    //     var timeInt = parseInt(time);
+    //     var updatedTime = timeInt - 10;
+    //     console.log(updatedTime);
+    //     if (updatedTime === 0) {
+    //         loseGame()
+    //     }
 
 
-
-        $(".timer").update(updatedTime);
-
-    }
+    // }
 
     function gamecounter1() {
         if (gamecounter >= n) {
@@ -183,6 +207,18 @@ function showQuestions() {
             questionComp3.classList.add("hide");
 
         }
+        if (gamecounter === 3) {
+            endScreen.className = "show";
+            questionComp4.classList.add("hide");
+                
+            Finalscore.textContent = score;
+            submitButton.addEventListener("click", submitHighscore);
+            submitButton.addEventListener("click", storeUserDetails);
+            submitButton.addEventListener("click", viewHighscores);
+        }
+
+
+
 
         console.log("before function");
         console.log(gamecounter);
@@ -192,82 +228,18 @@ function showQuestions() {
 
 
     }
+ 
 
-    // Fourth Question 
+    function submitHighscore () {
+        var userInitials = document.querySelector("#initials").value;
+        score = score;
+        highscoreRecordsArray.push({
+            "initials": userInitials,
+            "score": score,
+          });
+          console.log(highscoreRecordsArray);
+    }
 
-
-
-    document.getElementById("question-title1").textContent = Lastquestion;
-
-    firstQuest.textContent = questionsArray[3].choice[0];
-    btn = document.createElement("BUTTON");
-    btn.innerHTML = "Press here";
-    firstQuest.append(btn);
-    btn.addEventListener("click", gamecounter1);
-    btn.addEventListener("click", incorrectanswerTime);
-
-
-    secondQuest.textContent = questionsArray[3].choice[1];
-    btn = document.createElement("BUTTON");
-    btn.innerHTML = "Press here";
-    secondQuest.append(btn);
-    btn.addEventListener("click", gamecounter1);
-
-    thirdQuest.textContent = questionsArray[3].choice[2];
-    btn = document.createElement("BUTTON");
-    btn.innerHTML = "Press here";
-    thirdQuest.append(btn);
-    btn.addEventListener("click", gamecounter1)
-
-    fourthQuest.textContent = questionsArray[3].choice[3];
-    btn = document.createElement("BUTTON");
-    btn.innerHTML = "Press here";
-    fourthQuest.append(btn);
-    btn.addEventListener("click", gamecounter1);
-
-
-    //Third
-    document.getElementById("question-title2").textContent = Thirdquestion;
-
-    firstQuest1.textContent = questionsArray[2].choice[0];
-    btn = document.createElement("BUTTON");
-    btn.innerHTML = "Press here";
-    firstQuest1.append(btn);
-    btn.addEventListener("click", gamecounter1);
-
-
-    secondQuest2.textContent = questionsArray[2].choice[1];
-    btn = document.createElement("BUTTON");
-    btn.innerHTML = "Press here";
-    secondQuest2.append(btn);
-    btn.addEventListener("click", gamecounter1);
-
-    thirdQuest3.textContent = questionsArray[2].choice[2];
-    btn = document.createElement("BUTTON");
-    btn.innerHTML = "Press here";
-    thirdQuest3.append(btn);
-    btn.addEventListener("click", gamecounter1);
-
-
-
-    //Second
-    document.getElementById("question-title3").textContent = Secondquestion;
-
-    // firstQuest11.textContent = questionsArray[1].choice[1];
-    // btn = document.createElement("BUTTON");
-    // firstQuest11.append(btn);
-
-    secondQuest22.textContent = questionsArray[1].choice[0];
-    btn = document.createElement("BUTTON");
-    btn.innerHTML = "Press here";
-    secondQuest22.append(btn);
-    btn.addEventListener("click", gamecounter1);
-
-    thirdQuest33.textContent = questionsArray[1].choice[2];
-    btn = document.createElement("BUTTON");
-    btn.innerHTML = "Press here";
-    thirdQuest33.append(btn);
-    btn.addEventListener("click", gamecounter1);
 
 
     //first
@@ -278,15 +250,18 @@ function showQuestions() {
     btn.innerHTML = "Press here";
     firstQuest41.append(btn);
     btn.addEventListener("click", gamecounter1);
+    btn.addEventListener("click", scoreCounter);
+   
 
 
-    secondQuest42.textContent = questionsArray[0].choice[2];
+    secondQuest42.textContent = questionsArray[0].choice[1];
     btn = document.createElement("BUTTON");
     btn.innerHTML = "Press here";
     secondQuest42.append(btn);
     btn.addEventListener("click", gamecounter1);
 
-    thirdQuest43.textContent = questionsArray[0].choice[1];
+
+    thirdQuest43.textContent = questionsArray[0].choice[2];
     btn = document.createElement("BUTTON");
     btn.innerHTML = "Press here";
     thirdQuest43.append(btn);
@@ -295,9 +270,95 @@ function showQuestions() {
 
 
 
+    //Second
+    document.getElementById("question-title3").textContent = Secondquestion;
+
+    // firstQuest11.textContent = questionsArray[1].choice[1];
+    // btn = document.createElement("BUTTON");
+    // firstQuest11.append(btn);
+    //  btn.addEventListener("click", gamecounter1);
+    // btn.addEventListener("click", scoreCounter2);
+
+    secondQuest22.textContent = questionsArray[1].choice[0];
+    btn = document.createElement("BUTTON");
+    btn.innerHTML = "Press here";
+    secondQuest22.append(btn);
+    btn.addEventListener("click", gamecounter1);
+
+
+    thirdQuest33.textContent = questionsArray[1].choice[2];
+    btn = document.createElement("BUTTON");
+    btn.innerHTML = "Press here";
+    thirdQuest33.append(btn);
+    btn.addEventListener("click", gamecounter1);
+    btn.addEventListener("click", scoreCounter);
+
+    // firstQuest11.textContent = questionsArray[1].choice[1];
+    // btn = document.createElement("BUTTON");
+    // firstQuest11.append(btn);
+    //  btn.addEventListener("click", gamecounter1);
+    // btn.addEventListener("click", scoreCounter2);
+
+
+    //Third
+    document.getElementById("question-title2").textContent = Thirdquestion;
+
+    firstQuest1.textContent = questionsArray[2].choice[0];
+    btn = document.createElement("BUTTON");
+    btn.innerHTML = "Press here";
+    firstQuest1.append(btn);
+    btn.addEventListener("click", gamecounter1);
+    btn.addEventListener("click", scoreCounter);
+
+
+    secondQuest2.textContent = questionsArray[2].choice[1];
+    btn = document.createElement("BUTTON");
+    btn.innerHTML = "Press here";
+    secondQuest2.append(btn);
+    btn.addEventListener("click", gamecounter1);
+
+
+    thirdQuest3.textContent = questionsArray[2].choice[2];
+    btn = document.createElement("BUTTON");
+    btn.innerHTML = "Press here";
+    thirdQuest3.append(btn);
+    btn.addEventListener("click", gamecounter1);
 
 
 
+
+    // Fourth Question 
+
+    document.getElementById("question-title1").textContent = Lastquestion;
+
+    firstQuest.textContent = questionsArray[3].choice[0];
+    btn = document.createElement("BUTTON");
+    btn.innerHTML = "Press here";
+    firstQuest.append(btn);
+    btn.addEventListener("click", gamecounter1);
+    // btn.addEventListener("click", incorrectanswerTime);
+    btn.addEventListener("click", scoreCounter);
+
+
+    secondQuest.textContent = questionsArray[3].choice[1];
+    btn = document.createElement("BUTTON");
+    btn.innerHTML = "Press here";
+    secondQuest.append(btn);
+    btn.addEventListener("click", gamecounter1);
+
+
+    thirdQuest.textContent = questionsArray[3].choice[2];
+    btn = document.createElement("BUTTON");
+    btn.innerHTML = "Press here";
+    thirdQuest.append(btn);
+    btn.addEventListener("click", gamecounter1)
+
+
+    fourthQuest.textContent = questionsArray[3].choice[3];
+    btn = document.createElement("BUTTON");
+    btn.innerHTML = "Press here";
+    fourthQuest.append(btn);
+    btn.addEventListener("click", gamecounter1);
 
 
 
@@ -307,4 +368,50 @@ function showQuestions() {
 
 
 
+// function scoreCounter2() {
+//     score = score - 10;
+//     console.log(score);
+// }
 
+
+function scoreCounter() {
+    score = score + 10;
+
+    console.log(score);
+}
+
+
+
+
+
+function viewHighscores() {
+  window.location.href = 'highscores.html';
+};
+
+
+
+function storeUserDetails() {
+  localStorage.setItem("highscoreRecordsArray", JSON.stringify(highscoreRecordsArray));
+}
+
+
+
+function getStoredDetails() {
+  var storedHighscores = JSON.parse(localStorage.getItem("highscoreRecordsArray"));
+
+  if (storedHighscores !== null) {
+    highscoreRecordsArray = storedHighscores;
+  }
+
+}
+
+
+
+
+
+
+
+function playSound () {
+	let ding = new Audio('.starter\assets\sfx\incorrect.wav');
+	ding.play();
+}
