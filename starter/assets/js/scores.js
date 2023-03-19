@@ -3,52 +3,52 @@ let leaderboardArea = document.getElementById("highscores");
 let leaderboardTitle = document.getElementById("h1");
 let clearScoresButtton = document.getElementById("clear");
 
-let highscorers = [];
+let highscore = [];
 
 
 
 
 getStoredDetails()
 
-renderLeaderboard()
+createLeaderboard()
 
 
 
 function getStoredDetails() {
-    var storedHighscores = JSON.parse(localStorage.getItem("highscoreRecordsArray"));
+ var storedHighscores = JSON.parse(localStorage.getItem("highscoreRecordsArray"));
     
     if (storedHighscores !== null) {
-        highscorers = storedHighscores;
+        highscore = storedHighscores;
     }
 
   }
 
 
 
-function renderLeaderboard() {
+function createLeaderboard() {
     leaderboardArea.innerHTML = "";
 
     
-    for (var i = 0; i < highscorers.length; i++) {
-         var initials = highscorers[i].initials;
-        var score = highscorers[i].score;
+    for (var i = 0; i < highscore.length; i++) {
+         let initials = highscore[i].initials;
+        let score = highscore[i].score;
 
-         var li = document.createElement("li");
-        li.textContent = initials + ", " + score;
-         li.setAttribute("data-index", i);
+         let ol = document.createElement("ol");
+        ol.textContent = initials + ", " + score;
+         ol.setAttribute("data-index", i);
+         
 
-        leaderboardArea.appendChild(li);
+        leaderboardArea.appendChild(ol);
     }
  }
 
 
-
 function clearScoresButtton1() {
-    highscorers = [];
+    highscore = [];
     leaderboardArea.innerHTML = "";
     localStorage.removeItem("highscoreRecordsArray")
 
 };
-// clear highscore leaderboard
+
 clearScoresButtton.addEventListener("click", clearScoresButtton1);
 

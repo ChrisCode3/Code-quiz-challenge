@@ -32,8 +32,6 @@ const firstQuest1 = document.getElementById("quest1.1");
 const secondQuest2 = document.getElementById("quest2.1");
 const thirdQuest3 = document.getElementById("quest3.1");
 
-
-// const firstQuest11 = document.getElementById("quest2.1");
 const secondQuest22 = document.getElementById("quest2.2");
 const thirdQuest33 = document.getElementById("quest3.3");
 
@@ -56,7 +54,7 @@ var timerCount = 75;
 
 const endScreen = document.getElementById("end-screen");
 const Finalscore = document.getElementById("final-score");
-var highscoreRecordsArray = [];
+let highscoreRecordsArray = [];
 
 let score = 0;
 
@@ -122,12 +120,6 @@ const questionsArray = [
 
 ];
 
-// console.log(questionsArray[3]);
-// console.log(questionsArray[3].question + " Hello   adonai " + questionsArray[3].question);
-// console.log(questionsArray[3].choice[0] +questionsArray[3].choice[1] + questionsArray[3].choice[2]);
-// console.log(questionsArray[3].question + " Hello   adonai " + questionsArray[3].question);
-// console.log(questionsArray[3].question);
-// console.log(questionsArray[3].question + " Hello   adonai " + questionsArray[3].question);
 
 
 
@@ -210,34 +202,26 @@ function showQuestions() {
         if (gamecounter === 3) {
             endScreen.className = "show";
             questionComp4.classList.add("hide");
-                
+
             Finalscore.textContent = score;
             submitButton.addEventListener("click", submitHighscore);
             submitButton.addEventListener("click", storeUserDetails);
             submitButton.addEventListener("click", viewHighscores);
         }
 
-
-
-
-        console.log("before function");
-        console.log(gamecounter);
         gamecounter++
-        console.log("after function");
-        console.log(gamecounter);
-
 
     }
- 
 
-    function submitHighscore () {
+
+    function submitHighscore() {
         var userInitials = document.querySelector("#initials").value;
         score = score;
         highscoreRecordsArray.push({
             "initials": userInitials,
             "score": score,
-          });
-          console.log(highscoreRecordsArray);
+        });
+        console.log(highscoreRecordsArray);
     }
 
 
@@ -251,7 +235,7 @@ function showQuestions() {
     firstQuest41.append(btn);
     btn.addEventListener("click", gamecounter1);
     btn.addEventListener("click", scoreCounter);
-   
+
 
 
     secondQuest42.textContent = questionsArray[0].choice[1];
@@ -366,14 +350,6 @@ function showQuestions() {
 
 
 
-
-
-// function scoreCounter2() {
-//     score = score - 10;
-//     console.log(score);
-// }
-
-
 function scoreCounter() {
     score = score + 10;
 
@@ -381,28 +357,13 @@ function scoreCounter() {
 }
 
 
-
-
-
 function viewHighscores() {
-  window.location.href = 'highscores.html';
+    window.location.href = 'highscores.html';
 };
 
 
-
 function storeUserDetails() {
-  localStorage.setItem("highscoreRecordsArray", JSON.stringify(highscoreRecordsArray));
-}
-
-
-
-function getStoredDetails() {
-  var storedHighscores = JSON.parse(localStorage.getItem("highscoreRecordsArray"));
-
-  if (storedHighscores !== null) {
-    highscoreRecordsArray = storedHighscores;
-  }
-
+    localStorage.setItem("highscoreRecordsArray", JSON.stringify(highscoreRecordsArray));
 }
 
 
@@ -411,7 +372,6 @@ function getStoredDetails() {
 
 
 
-function playSound () {
-	let ding = new Audio('.starter\assets\sfx\incorrect.wav');
-	ding.play();
-}
+
+
+
